@@ -1,0 +1,79 @@
+%%| SET DOCUMENT PARAMTER HERE |%%
+\documentclass[
+	ngerman          	% neue deutsche Rechtschreibung
+	,a4paper          	% Papiergrösse
+	% ,twoside          % Zweiseitiger Druck (rechts/links)
+	,12pt             	% Schriftgrösse (11pt default in Vorlage)
+	,pdftex
+	,abstract=on
+	%  ,hidelinks		% Kästchen um Links verbergen
+	%  ,disable         % Todo-Markierungen auschalten
+        ]{scrreprt}
+
+%%| INCLUDE PACKAGES HERE |%%
+\usepackage[utf8]{inputenc} % Dateicodierung
+\usepackage{styles/bericht}
+\include{general/titlepage-declarations}
+% \usepackage{graphicx}
+% Packages for Mathematical equations
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage[backend=biber, style=ieee]{biblatex}
+% \usepackage{hyperref}
+% \usepackage{setspace}
+% \usepackage{microtype}
+
+
+
+%%| SET PACKAGE PARAMETERS HERE |%%
+\hypersetup{
+    pdfsubject  = {\Was},
+    pdfauthor   = {\Autor},
+    pdftitle    = {\Titel},
+    % pdfkeywords = {XY-Labor, Laborbericht ...},
+    pdfcreator  = {pdflatex},
+    pdfproducer = {LaTeX with hyperref}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%| TITLE PAGE |%%
+\begin{document}
+\pagenumbering{Roman}
+	\selectlanguage{ngerman}
+ 
+	\begin{titlepage}
+		\include{general/titlepage}
+	\end{titlepage}
+	% Nur für Bachelorarbeiten einfügen:
+	\include{general/erklaerung}
+	\include{chapter/abstractDE}
+	
+	\begin{otherlanguage}{english}
+	\include{chapter/abstractEN}
+	\end{otherlanguage}
+	\newcounter{savepage}
+	
+	% \include{chapter/vorwort}
+	
+	\include{general/verzeichnisse}
+	
+	%Hier startet der Inhalt -> Arabische Seitennummerierung
+	\setcounter{savepage}{\arabic{page}}
+	\pagenumbering{arabic}
+        \include{chapter/vorwort}
+        \include{chapter/1_Einleitung.tex}
+	\pagenumbering{Roman}
+	\setcounter{page}{\thesavepage}
+	\include{general/appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%| BIBLIOGRAPHY |%%                 
+% \newpage                                          
+% \printbibliography[heading= bibintoc, title={Literaturverzeichnis}]
+% \newpage
+% \listoffigures
+% \addcontentsline{toc}{section}{Abbildungsverzeichnis}
+% \newpage
+% \listoftables
+% \addcontentsline{toc}{section}{Tabellenverzeichnis}
+\end{document}

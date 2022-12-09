@@ -1,0 +1,227 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Descr:       Vorlage für Berichte der HKA, Abkürzungen
+%% Author:      Jonas Höfflin, jonas@hoefflin.io
+%% -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/bericht}[2022/12/09 v1.0]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% needed packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}  % Interne LaTeX Codierungen
+
+\usepackage{csquotes}     % Context sensitive quotation facilities.
+\usepackage[ngerman,english]{babel}
+\usepackage{xspace}       % https://ctan.org/pkg/xspace
+\usepackage{array}        % http://www.ctan.org/tex-archive/help/Catalogue/entries/array.html
+\usepackage{tabularx}     % http://www.ctan.org/tex-archive/help/Catalogue/entries/tabularx.html
+\usepackage{eurosym}      % \euro
+\usepackage{pdfpages}     % http://www.ctan.org/tex-archive/help/Catalogue/entries/pdfpages.html
+\usepackage{needspace}    % http://www.tex.ac.uk/cgi-bin/texfaq2html?label=nopagebrk
+\usepackage[bookmarksopen,bookmarksnumbered]{hyperref}
+\usepackage[headings]{fullpage}
+\usepackage{url}
+\usepackage{microtype}    % http://tug.ctan.org/tex-archive/macros/latex/contrib/microtype/
+%\usepackage{lmodern}     % Computern-Modern Schriftfamilie
+\usepackage{amssymb}      % Symbole
+\usepackage{framed}       % Framed or shaded regions that can break across pages.
+                            % http://dante.ctan.org/tex-archive/help/Catalogue/entries/framed.html
+                            % Benutzung siehe erklaerung.tex
+
+\usepackage{wrapfig}        % Bilder von textumfliessen lassen
+\usepackage{adjustbox}
+\usepackage{paralist}
+
+
+
+
+
+\usepackage[colorinlistoftodos]{todonotes}
+                            % Einfache Verwaltung und Erstellung von TODO's Markierungen
+                            % http://tug.ctan.org/tex-archive/macros/latex/contrib/todonotes/
+                            % wichtige Paket-Optionen: disable
+
+\usepackage{makeidx}        % Erstellung eines Indexes
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bilder und Grafiken
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx}
+\graphicspath{ {./Images/} }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Diagramme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\usepackage{multirow}
+
+\usepackage{tikz}
+\usepackage{subcaption}
+
+\tikzset{
+	meinemarkfarben/.style={
+		mark=*,
+		draw=#1,
+		fill=#1,
+		every mark/.append style={fill=#1}}
+}
+
+\pgfplotscreateplotcyclelist{correctColor}{%
+	meinemarkfarben={green}\\%1
+	meinemarkfarben={green!50}\\%2
+	meinemarkfarben={yellow!50}\\%3
+	meinemarkfarben={red!50}\\%4
+	meinemarkfarben={red}\\%5
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Kopf- und Fußzeile
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr} 
+
+\pagestyle{fancy} 
+\lhead{\rightmark} 
+\chead{} 
+\rhead{\thepage} 
+
+\lfoot{} 
+\cfoot{} 
+\rfoot{} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Neue Befehle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\reffig}[1]{(Abbildung~\ref{#1})}
+\newcommand{\refsec}[1]{(Kapitel~\ref{#1})}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\renewcaptionname{ngerman}{\figurename}{Abb.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Schrift definieren
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[onehalfspacing]{setspace}
+\setstretch{1.5}
+% Times new Roman
+\usepackage{mathptmx} \renewcommand{\familydefault}{\rmdefault}
+% Arial
+% \usepackage{uarial} \renewcommand{\familydefault}{\sfdefault}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Geometry, Abstand zum Rand
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{
+%showframe,  Seitenlayout anzeigen
+left=25mm,
+right=25mm,
+top=25mm,
+bottom=25mm,
+%includeheadfoot, Platz für Kopfzeile
+bindingoffset=5mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% citation, bibliography, BIBLATEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wer etwas mehr "Kontrolle" über das Aussehen der Referenzen haben möchte, kann
+% auch das "biblatex"-Paket benutzen.
+\usepackage{etoolbox}  % http://dante.ctan.org/tex-archive/help/Catalogue/entries/etoolbox.html
+\usepackage[numbers]{natbib}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programmlistings setzen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}   % http://www.ctan.org/tex-archive/macros/latex/contrib/listings/
+\usepackage{color, colortbl}
+
+% Wie sollen die Überschriften benannt werden:
+\renewcommand{\lstlistingname}{Code-Ausschnitt}
+
+% Wie die Liste der Listings, s. \lstlistoflistings in bericht.tex
+\renewcommand{\lstlistlistingname}{Liste der Code-Ausschnitte}
+
+
+\definecolor{Gray}{gray}{0.9}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+\definecolor{blue}{rgb}{0,0,0.6}
+\definecolor{green}{rgb}{0,0.6,0}
+% So kann man einen Stil für alle Algorithmen definieren
+\lstset{
+	language=Java,
+	% Zeilennummerierung
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=8pt,					% Abstand der Nummern zum Text
+	%numberblanklines=false,		% bei Leerzeilen keine Nummer ausgeben (aber zählen)
+	% Styling
+	tabsize=2,
+	basicstyle=\sffamily\footnotesize,		% Wie soll der Algorithmus gesetzt werden
+	keywordstyle=\color{javapurple}\bfseries,
+	stringstyle=\color{javared},
+	commentstyle=\color{javagreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	% Rahmen / Allgemein
+	frame=tblr,              	% Rahmen um den Code | tb = top & bottom | single = komplett um code
+	captionpos=b,           % Caption unter den Code setzen
+	breaklines=true,
+	%	columns=fullflexible,
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abk�rzungen, https://ctan.org/pkg/acronym?lang=en
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[printonlyused]{acronym}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formelverzeichnis:
+% Leider versursacht float zusammen mit Hyperref Warnungen
+% siehe http://www.tex.ac.uk/cgi-bin/texfaq2html?label=hyperdupdest
+% Wenn also das Formelverzeichnis nicht ben�tigt, dann das folgende
+% auskommentieren
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{float}
+\newfloat{eq}{H}{for}[chapter]
+\newcommand{\forname}{Formelverzeichnis}
+\newcommand{\listofequations}{\listof{eq}{\forname}}
+
+\newcommand{\eqlabel}[2]{
+        \label{#1}
+        \addcontentsline{for}{eq}{(\ref{#1}) #2}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitionen mit Ausgabe im Index
+% gibt #2 aus und fuegt #1 bzw. #2 (wenn #1 nicht angegeben) in den Index ein
+\newcommand{\Def}[2][]{%
+   \def\OPTARG{#1}%
+   \def\EMPTY{}%
+   \ifx\OPTARG\EMPTY\index{#2}\else\index{#1}\fi%
+   \textbf{#2}\xspace%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
+%%
+%% End of file `bericht.sty'.
